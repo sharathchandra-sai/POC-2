@@ -1,25 +1,19 @@
 pipeline {
     agent any
-
     stages {
-        stage('Checkout Repo') {
+        stage('Checkout') {
             steps {
-                echo 'Cloning the repo...'
-                git url: 'https://github.com/sharathchandra-sai/POC-2.git', branch: 'main'
+                git 'https://github.com/your-org/poc-2.git'
             }
         }
-
-        stage('Run Hello Script') {
+        stage('Build') {
             steps {
-                echo 'Running hello.sh script...'
-                sh 'bash hello.sh'
+                sh 'mvn clean package'  // Produces target/app.war
             }
         }
-
-        stage('Check Web Page Message') {
+        stage('Deploy') {
             steps {
-                echo 'Running Python script to check web page...'
-                sh 'python3 check_web.py'
+                sh 'ansible-playbook deploy/deploy_to_tomcat.yml -i deploy/hosts.ini'
             }
         }
     }
