@@ -1,19 +1,22 @@
 pipeline {
     agent any
+
     stages {
-        stage('Checkout') {
+        stage('Clone Repo') {
             steps {
-                git 'https://github.com/your-org/poc-2.git'
+                git url: 'https://github.com/your-username/poc-2.git', branch: 'main'
             }
         }
-        stage('Build') {
+
+        stage('Build WAR') {
             steps {
-                sh 'mvn clean package'  // Produces target/app.war
+                sh 'bash build/build.sh'
             }
         }
-        stage('Deploy') {
+
+        stage('Deploy using Ansible') {
             steps {
-                sh 'ansible-playbook deploy/deploy_to_tomcat.yml -i deploy/hosts.ini'
+                sh 'ansible-playbook ansible/deploy.yml'
             }
         }
     }
