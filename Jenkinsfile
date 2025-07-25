@@ -10,7 +10,7 @@ pipeline {
 
         stage('Run Hello Script') {
             steps {
-                sh './hello.sh'
+                sh 'bash hello.sh'
             }
         }
     }
