@@ -1,7 +1,7 @@
 ---
 - name: Deploy WAR to local Tomcat
   hosts: local
-  become: true
+  become: false
  
   tasks:
     - name: Copy WAR file to Tomcat webapps
