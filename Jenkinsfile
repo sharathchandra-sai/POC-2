@@ -1,22 +1,26 @@
 pipeline {
     agent any
-
+ 
     stages {
         stage('Clone Repo') {
             steps {
-                git branch: 'main', url: 'https://github.com/sharathchandra-sai/POC-2.git'
+git credentialsId: 'your-github-creds-id', url: 'https://github.com/your-username/my-app.git'
             }
         }
-
-        stage('Build WAR') {
+ 
+        stage('Build') {
             steps {
-                sh 'bash build/build.sh'
+                echo 'Simulating Build... (Use Maven or Gradle here)'
+                sh 'cp app.war app.war' // placeholder
             }
         }
-
-        stage('Deploy using Ansible') {
+ 
+        stage('Deploy with Ansible') {
             steps {
-                sh 'ansible-playbook ansible/deploy.yml'
+                sh '''
+                cd ansible
+                ansible-playbook -i inventory.ini deploy.yml
+                '''
             }
         }
     }
