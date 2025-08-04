@@ -8,12 +8,12 @@ pipeline {
             }
         }
  
-        stage('Build') {
-            steps {
-                echo 'Simulating Build... (Use Maven or Gradle here)'
-                sh 'cp app.war app.war' // placeholder
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         echo 'Simulating Build... (Use Maven or Gradle here)'
+        //         sh 'cp app.war app.war' // placeholder
+        //     }
+        // }
  
         stage('Deploy with Ansible') {
             steps {
