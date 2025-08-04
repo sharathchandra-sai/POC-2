@@ -1,0 +1,16 @@
+---
+- name: Deploy WAR to local Tomcat
+  hosts: local
+  become: true
+ 
+  tasks:
+    - name: Copy WAR file to Tomcat webapps
+      copy:
+        src: ../app.war
+        dest: /var/lib/tomcat10/webapps/app.war
+        mode: '0644'
+ 
+    - name: Restart Tomcat
+      service:
+        name: tomcat10
+        state: restarted
