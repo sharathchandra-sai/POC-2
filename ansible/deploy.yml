@@ -1,7 +1,0 @@
-- name: Deploy WAR to Apache Tomcat
-  hosts: localhost
-  tasks:
-    - name: Copy WAR file to Tomcat webapps
-      copy:
-        src: build_output/hello.war
-        dest: /opt/tomcat/webapps/hello.war
